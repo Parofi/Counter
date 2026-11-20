@@ -102,12 +102,23 @@ module tt_um_Parofi_contador_sensores (
     // =========================================================================
     // 3. CONVERSIÓN BINARIO A BCD (CENTENAS, DECENAS, UNIDADES)
     // =========================================================================
+    wire [7:0] centenas_full = cuenta / 8'd100;
+    wire [7:0] resto         = cuenta % 8'd100;
+    wire [7:0] decenas_full  = resto / 8'd10;
+    wire [7:0] unidades_full = resto % 8'd10;
+
+    wire [3:0] centenas = centenas_full[3:0];
+    wire [3:0] decenas  = decenas_full[3:0];
+    wire [3:0] unidades = unidades_full[3:0];
+    /*
+   
     // División entera optimizada para 8 bits (0 a 255) sin gastar área excesiva en silicio
     wire [3:0] centenas = cuenta / 8'd100;
     wire [7:0] resto    = cuenta % 8'd100;
     wire [3:0] decenas  = resto / 8'd10;
     wire [3:0] unidades = resto % 8'd10;
-
+    */
+    
     // =========================================================================
     // 4. CONTROL DE MULTIPLEXADO DE 3 DISPLAYS
     // =========================================================================
