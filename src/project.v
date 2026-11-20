@@ -1,6 +1,6 @@
 `default_nettype none
 
-module tt_um_contador_sensores (
+module tt_um_Parofi_contador_sensores (
     input  wire [7:0] ui_in,    // Entradas dedicadas (Sensores)
     output wire [7:0] uo_out,   // Salidas dedicadas (Segmentos a-g + dp)
     input  wire [7:0] uio_in,   // IOs bidireccionales: Entrada (sin usar)
