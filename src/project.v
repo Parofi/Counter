@@ -196,7 +196,16 @@ module tt_um_Parofi_contador_sensores (
     assign uio_out = {5'b0, dig_sel};    // uio_out[2:0] = selección de dígito
     assign uio_oe  = 8'b0000_0111;       // Habilita uio[2:0] como salidas; uio[7:3] como entradas
 
-    wire _unused = &{ena, ui_in[7:2], uio_in, 1'b0};
+    wire _unused = &{
+        ena, 
+        ui_in[7:2], 
+        uio_in, 
+        centenas_full[7:4], 
+        decenas_full[7:4], 
+        unidades_full[7:4], 
+        1'b0
+    };
+    //wire _unused = &{ena, ui_in[7:2], uio_in, 1'b0};
 
 endmodule
 
