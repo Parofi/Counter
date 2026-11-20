@@ -14,20 +14,22 @@ module tt_um_Parofi_contador_sensores (
     // =========================================================================
     // 1. ENTRADAS Y SINCRONIZACIÓN DE SENSORES
     // =========================================================================
-    wire sensor_ext = ui_in;
-    wire sensor_int = ui_in;
+    wire sensor_ext = ui_in[0]; // Sensor Exterior en ui_in[0]
+    wire sensor_int = ui_in[1]; // Sensor Interior en ui_in[1]
+
 
     reg [1:0] sync_ext, sync_int;
-    wire ext_limpio = sync_ext;
-    wire int_limpio = sync_int;
+    
+    wire ext_limpio = sync_ext[1];
+    wire int_limpio = sync_int[1];
 
     always @(posedge clk) begin
         if (!rst_n) begin
             sync_ext <= 2'b00;
             sync_int <= 2'b00;
         end else begin
-            sync_ext <= {sync_ext, sensor_ext};
-            sync_int <= {sync_int, sensor_int};
+            sync_ext <= {sync_ext[0], sensor_ext};
+            sync_int <= {sync_int[0], sensor_int};
         end
     end
 
