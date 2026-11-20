@@ -1,17 +1,17 @@
 # Tiny Tapeout project information
 project:
-  title:        ""      # Project title
-  author:       ""      # Your name
+  title:        "Counter"      # Project title
+  author:       "Paulino R"      # Your name
   discord:      ""      # Your discord username, for communication and automatically assigning you a Tapeout role (optional)
-  description:  ""      # One line description of what your project does
+  description:  "3 digits counter from 000 to 255"      # One line description of what your project does
   language:     "Verilog" # other examples include SystemVerilog, Amaranth, VHDL, etc
-  clock_hz:     0       # Clock frequency in Hz (or 0 if not applicable)
+  clock_hz:     10000000       # Clock frequency in Hz (or 0 if not applicable)
 
   # How many tiles your design occupies? A single tile is about 340x160 uM.
   tiles: "1x1"          # Valid values: 1x1, 1x2, 2x2, 3x2, 4x2, 3x4 or 4x4
 
   # Your top module name must start with "tt_um_". Make it unique by including your github username:
-  top_module:  "tt_um_example"
+  top_module:  "tt_um_Parofi_contador_sensores"
 
   # List your project's source files here.
   # Source files must be in ./src and you must list each source file separately, one per line.
@@ -23,8 +23,8 @@ project:
 # This section is for the datasheet/website. Use descriptive names (e.g., RX, TX, MOSI, SCL, SEG_A, etc.).
 pinout:
   # Inputs
-  ui[0]: ""
-  ui[1]: ""
+  ui[0]: "sensor_ext (Sensor Exterior - Set Inc / Reset Dec)"
+  ui[1]: "sensor_int (Sensor Interior - Reset Inc / Set Dec)"
   ui[2]: ""
   ui[3]: ""
   ui[4]: ""
@@ -33,19 +33,19 @@ pinout:
   ui[7]: ""
 
   # Outputs
-  uo[0]: ""
-  uo[1]: ""
-  uo[2]: ""
-  uo[3]: ""
-  uo[4]: ""
-  uo[5]: ""
-  uo[6]: ""
-  uo[7]: ""
+  uo[0]: "Segmento a"
+  uo[1]: "Segmento b"
+  uo[2]: "Segmento c"
+  uo[3]: "Segmento d"
+  uo[4]: "Segmento e"
+  uo[5]: "Segmento f"
+  uo[6]: "Segmento g"
+  uo[7]: "Punto decimal (dp - apagado)"
 
   # Bidirectional pins
-  uio[0]: ""
-  uio[1]: ""
-  uio[2]: ""
+  uio[0]: "Habilitacion Display 0 (Unidades)"
+  uio[1]: "Habilitacion Display 1 (Decenas)"
+  uio[2]: "Habilitacion Display 2 (Centenas)"
   uio[3]: ""
   uio[4]: ""
   uio[5]: ""
