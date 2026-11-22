@@ -27,20 +27,21 @@ To prevent false triggers and determine travel direction, a 5-state Finite State
 
 1. **Clock & Reset:** Apply a `10 MHz` clock to `clk` and pulse `rst_n` low (`0`) to initialize the internal state machine and reset the counter to `000`.
 2. **Simulate an Increment Sequence:**
-   * Set `ui_in` (`sensor_ext`) = `1`, keep `ui_in` (`sensor_int`) = `0`.
-   * Set `ui_in` (`sensor_int`) = `1` (both active).
-   * Set `ui_in` (`sensor_ext`) = `0`.
-   * Set `ui_in` (`sensor_int`) = `0`. Verify that the counter increments to `001`.
+   * Set `ui_in[0]` (`sensor_ext`) = `1`, keep `ui_in[1]` (`sensor_int`) = `0`.
+   * Set `ui_in[1]` (`sensor_int`) = `1` (both active).
+   * Set `ui_in[0]` (`sensor_ext`) = `0`.
+   * Set `ui_in[1]` (`sensor_int`) = `0`. Verify that the counter increments to `001`.
 3. **Simulate a Decrement Sequence:**
-   * Set `ui_in` (`sensor_int`) = `1`, keep `ui_in` (`sensor_ext`) = `0`.
-   * Set `ui_in` (`sensor_ext`) = `1` (both active).
-   * Set `ui_in` (`sensor_int`) = `0`.
-   * Set `ui_in` (`sensor_ext`) = `0`. Verify that the counter decrements back to `000`.
+   * Set `ui_in[1]` (`sensor_int`) = `1`, keep `ui_in[0]` (`sensor_ext`) = `0`.
+   * Set `ui_in[0]` (`sensor_ext`) = `1` (both active).
+   * Set `ui_in[1]` (`sensor_int`) = `0`.
+   * Set `ui_in[0]` (`sensor_ext`) = `0`. Verify that the counter decrements back to `000`.
 4. **Verify Multiplexing:** Monitor `uio_out[2:0]` (`001` → `010` → `100`) every `1 ms` (`10,000` clock cycles) and confirm that `uo_out[6:0]` outputs the matching 7-segment pattern for units, tens, and hundreds respectively.
 
 ## External hardware
 
-* **Two Digital Sensors (`sensor_ext` and `sensor_int`):** Active-high digital sensors (e.g., infrared break-beam modules, photoelectric sensors, or debounced limit switches) connected to `ui_in` and `ui_in`. Ensure voltage levels match the Tiny Tapeout I/O standard (`1.8V` or `3.3V` depending on the carrier board).
+* **Two Digital Sensors (`sensor_ext` and `sensor_int`):** Active-high digital sensors (e.g., infrared break-beam modules, photoelectric sensors, or debounced limit switches) connected to `ui_in[0]` and `ui_in[1]`. Ensure voltage levels match the Tiny Tapeout I/O standard (`1.8V` or `3.3V` depending on the carrier board).
 * **Three 7-Segment Displays (Common-Cathode):**
-  * Connect segments `a` through `g` in parallel across all three displays to `uo_out` through current-limiting resistors (`220 Ω` – `330 Ω`).
-  * Connect the common cathodes of Display 0 (Units), Display 1 (Tens), and Display 2 (Hundreds) to `uio_out`, `uio_out`, and `uio_out` respectively via NPN low-side transistor drivers (e.g., `2N2222` or `BC547` with base resistors) to avoid exceeding the chip's per-pin current limit.
+  * Connect segments `a` through `g` in parallel across all three displays to `uo_out[6:0]` through current-limiting resistors (`220 Ω` – `330 Ω`).
+  * Connect the common cathodes of Display 0 (Units), Display 1 (Tens), and Display 2 (Hundreds) to `uio_out[0]`, `uio_out[1]`, and `uio_out[2]` respectively via NPN low-side transistor drivers (e.g., `2N2222` or `BC547` with base resistors) to avoid exceeding the chip's per-pin current limit.
+
